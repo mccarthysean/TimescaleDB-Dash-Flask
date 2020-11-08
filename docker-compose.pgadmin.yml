@@ -1,0 +1,22 @@
+version: '3.7'
+services:
+  pgadmin:
+    # Name of the container this service creates. Otherwise it's prefixed with the git repo name
+    image: "dpage/pgadmin4:latest"
+    restart: unless-stopped
+    env_file: .env
+    environment: 
+      PGADMIN_LISTEN_PORT: 9000
+    ports: 
+      - 0.0.0.0:9000:9000
+    volumes: 
+      # So the database server settings get saved and stored even if the container is replaced or deleted
+      - pgadmin:/var/lib/pgadmin
+    networks:
+      timescale_network:
+volumes:
+  pgadmin:
+
+networks:
+  timescale_network:
+    external: true

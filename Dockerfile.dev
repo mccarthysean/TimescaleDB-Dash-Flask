@@ -1,0 +1,17 @@
+FROM python:3.8-slim
+
+# Configure apt and install packages
+RUN apt-get update && \
+    apt-get -y install --no-install-recommends apt-utils git && \
+    apt-get autoremove -y && \
+    apt-get clean -y && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN pip3 install --upgrade pip && \
+    pip3 install poetry==1.0.10
+
+COPY poetry.lock pyproject.toml /
+RUN poetry config virtualenvs.create false && \
+  # poetry install $(test "$DEV_TEST_PRD" == production && echo "--no-dev") --no-interaction --no-ansi
+  # poetry install --no-interaction --no-ansi --no-dev
+  poetry install --no-interaction --no-ansi

@@ -1,0 +1,34 @@
+version: '3.7'
+services:
+  timescale:
+    image: timescale/timescaledb:1.7.4-pg12
+    volumes: 
+      - type: volume
+        # source: timescale-db # the volume name
+        source: timescale_volume
+        target: /var/lib/postgresql/data # the location in the container where the data are stored
+        read_only: false
+      # Custom postgresql.conf file will be mounted (see command: as well)
+      - type: bind
+        source: ./postgresql_custom.conf
+        target: /postgresql_custom.conf
+        read_only: false
+    env_file: .env
+    environment: 
+      POSTGRES_HOST: timescale
+    command: ["-c", "config_file=/postgresql_custom.conf"]
+    ports: 
+      - 0.0.0.0:5432:5432
+    networks:
+      timescale_network:
+    deploy:
+      restart_policy:
+        condition: on-failure
+
+# Creates a named volume to persist our database data
+volumes:
+  timescale_volume:
+
+networks:
+  timescale_network:
+    external: true
