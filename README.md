@@ -12,7 +12,7 @@ Optional:
 
 Clone the repo from GitHub:
 ```
-git clone https://github.com/mccarthysean/Flask-Dash-Plotly-TimescaleDB-Docker-Swarm-Traefik.git
+git clone https://github.com/mccarthysean/TimescaleDB-Dash-Flask.git
 or use GitHub Desktop software for an easy, user-friendly experience
 ```
 
