@@ -21,13 +21,4 @@
 	"extensions": [
 		"ms-python.python", 
 	],
-	// "settings": {
-	// 	"python.linting.pylintEnabled": true,
-	// 	"python.linting.enabled": true,
-	// 	"remote.extensionKind": {
-	// 		"ms-azuretools.vscode-docker": "workspace"
-	// 	},
-	// 	"git.enableSmartCommit": true,
-	// 	"git.autofetch": true,
-	// },
 }
