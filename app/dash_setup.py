@@ -9,30 +9,23 @@ def register_dashapps(app):
     Register Dash apps with the Flask app
     """
 
-    # Some of these imports should be inside this function so that other Flask
-    # stuff gets loaded first, since some of the below imports reference the other
-    # Flask stuff, creating circular references  
-
-    from app.dashapp.layout import get_layout
-    from app.dashapp.callbacks import register_callbacks
+    # external Bootstrap CSS stylesheets
+    external_stylesheets = [
+        'https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css'
+    ]
+    
+    # external Bootstrap JavaScript files
+    external_scripts = [
+        "https://code.jquery.com/jquery-3.5.1.slim.min.js",
+        "https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js",
+        "https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js",
+    ]
 
     # To ensure proper rendering and touch zooming for all devices, add the responsive viewport meta tag
     meta_viewport = [{
         "name": "viewport", 
         "content": "width=device-width, initial-scale=1, shrink-to-fit=no"
     }]
-
-    # external CSS stylesheets
-    external_stylesheets = [
-        'https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css'
-    ]
-    
-    # external JavaScript files
-    external_scripts = [
-        "https://code.jquery.com/jquery-3.5.1.slim.min.js",
-        "https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js",
-        "https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js",
-    ]
 
     dashapp = dash.Dash(
         __name__,
@@ -46,6 +39,12 @@ def register_dashapps(app):
         external_stylesheets = external_stylesheets
     )
     dashapp.title = 'Dash Charts in Single-Page Application'
+
+    # Some of these imports should be inside this function so that other Flask
+    # stuff gets loaded first, since some of the below imports reference the other
+    # Flask stuff, creating circular references 
+    from app.dashapp.layout import get_layout
+    from app.dashapp.callbacks import register_callbacks
 
     with app.app_context():
 

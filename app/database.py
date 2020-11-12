@@ -1,14 +1,7 @@
 
 import os
 import psycopg2
-# from psycopg2.extras import DictCursor
-# import click
-# from flask import current_app
 from flask import g
-# from flask.cli import with_appcontext
-# import boto3
-# import logging
-# import time
 
 
 def get_conn():

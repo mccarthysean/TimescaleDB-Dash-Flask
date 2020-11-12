@@ -1,5 +1,5 @@
 {
-	"name": "flask_dash",
+	"name": "timescale_flask_dash_tutorial",
 
 	// Path that the Docker build should be run from relative to devcontainer.json. 
 	// For example, a value of ".." would allow you to reference content in sibling directories. Defaults to "."
